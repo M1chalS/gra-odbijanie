@@ -5,7 +5,7 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Gra w odbijanie😀</title>
+    <title>Łapanie strzał gra</title>
     <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
     <script src="script.js"></script>
     <style>
@@ -39,12 +39,20 @@
             top: 0;
             left: 0;
         }
+
+        #bullet {
+            position: absolute;
+            top: 250px;
+            left: 0; 
+            display: none;
+        }
     </style>
 </head>
 <body>
     <h1>Punkty: <span id="points">0</span>, Życia: <span id="lives">3</span></h1>
     <div id="main">
         <div id="arrow">>>></div>
+        <div id="bullet">O</div>
         <div id="shield"></div>
     </div>
 
