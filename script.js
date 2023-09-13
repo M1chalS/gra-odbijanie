@@ -1,24 +1,35 @@
-let dirShield = "down";
 let dirArrow = "right";
 let interval;
+let points = 0;
+let lives = 3;
 
-function calculateShield() {
-    let posY = $("#shield").position().top;
+function checkCollision() {
+    let posX = $("#arrow").position().left;
+    let posY = $("#arrow").position().top;
+    let shieldX = $("#shield").position().left;
+    let shieldY = $("#shield").position().top;
 
-    if (posY === 500) {
-        dirShield = "up";
+    if (posX >= shieldX && posX <= shieldX + 25 && posY >= shieldY && posY <= shieldY + 100) {
+        $("#arrow").css("left", 0);
+        $("#arrow").css("top", Math.floor(Math.random() * 500));
+        points++;
+        $("#points").html(points);
     }
+}
 
-    if (posY === 0) {
-        dirShield = "down";
+async function checkLives() {
+    if (lives === 0) {
+        await alert("Koniec gry, punkty:" + points);
+        location.reload();
     }
+}
 
-    if (dirShield === "up") {
-        $("#shield").css("top", posY - 10);
-    }
+function checkCollisionWithGround() {
+    let posX = $("#arrow").position().left;
 
-    if (dirShield === "down") {
-        $("#shield").css("top", posY + 10);
+    if (posX >= 975) {
+        lives--;
+        $("#lives").html(lives);
     }
 }
 
@@ -48,8 +59,10 @@ const gameState = {
     status: true,
     on: () => {
         interval = setInterval(function () {
-            calculateShield();
             calculateArrow();
+            checkCollision();
+            checkLives();
+            checkCollisionWithGround();
         }, 100)
     },
     off: () => clearInterval(interval)
@@ -57,6 +70,7 @@ const gameState = {
 
 $(function () {
     gameState.on();
+    calculateShield();
 
     $("#start").click(function () {
         if (gameState.status) {
@@ -69,4 +83,25 @@ $(function () {
             gameState.on();
         }
     });
+
+
+});
+
+$(document).on("keydown", function (event) {
+    let posY = $("#shield").position().top;
+    const key = (event.keyCode ? event.keyCode : event.which);
+
+    if(posY > 0) {
+        if (key == '87') {
+            $("#shield").css("top", posY - 30);
+        }
+    }
+
+    if(posY < 510) {
+         if (key == '83') {
+            $("#shield").css("top", posY + 30);
+        }
+    }
+
+    console.log(posY);
 });
