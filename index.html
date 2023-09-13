@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Gra w odbijanie😀</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+    <script src="script.js"></script>
+    <style>
+        body {
+            background-color: aqua;
+            width: 100vw;
+            height: 100vh;
+        }
+
+        #main {
+            position: relative;
+            width: 1000px;
+            height: 600px;
+            border: 2px black solid;
+            background-color: aliceblue;
+        }
+
+        #shield {
+            width: 30px;
+            border-radius: 50%;
+            background-color: blue;
+            height: 90px;
+            border: 1px black solid;
+            position: absolute;
+            right: 0;
+            top: 0;
+        }
+
+        #arrow {
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+    </style>
+</head>
+<body>
+    <div id="main">
+        <div id="arrow">>>></div>
+        <div id="shield"></div>
+    </div>
+
+<button id="start">Stop</button>
+</body>
+</html>
